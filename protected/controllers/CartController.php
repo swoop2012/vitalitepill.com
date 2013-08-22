@@ -10,7 +10,7 @@ class CartController extends Controller{
 
     public function actionIndex(){
     Yii::app()->clientScript->registerScript('basket',"$('#basket-edit').basket({submitLink:'.basket-order a'});",CClientScript::POS_READY);
-    $this->pageTitle='Джойсон - Корзина';
+    $this->pageTitle='Корзина';
 	$this->setParams();
 	$data = Basket::getBasket();
 	$this->render('index',compact('data'));
