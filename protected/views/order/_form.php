@@ -13,7 +13,7 @@
 
         <div class="form-l">
             <p>
-                <label>Имя <span>*</span>:
+                <label>Полное ФИО <span>*</span>:
                 </label><br>
                 <?= $form->textField($model,'fullName',array('class'=>'inp-m')); ?>
                 <?= $form->error($model,'fullName'); ?>
