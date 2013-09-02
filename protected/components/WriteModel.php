@@ -20,6 +20,12 @@ class WriteModel extends CComponent{
     public $urls;
     private $ids;
     private $keys;
+    private $changedPositions;
+
+    public function __construct(){
+        $this->changedPositions = Settings::getValue('ChangedPosition');
+    }
+
     public function WriteArray($array,$modelName=NULL)
     {
 	if(!empty($array)){
@@ -147,7 +153,8 @@ class WriteModel extends CComponent{
         foreach($attributes2 as $key=>$value)
         {
             if(($attributes1->DontChangeDescriptions && in_array($key,$this->excludeFields))||
-               ($attributes1->DontChangeImages && in_array($key,$this->imagesFields)))
+               ($attributes1->DontChangeImages && in_array($key,$this->imagesFields)) ||
+               ($this->changedPositions == 1 && $key='Position'))
                 continue;
             if($attributes1->{$key}!==$value)
             {
