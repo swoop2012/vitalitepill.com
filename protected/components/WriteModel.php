@@ -23,7 +23,6 @@ class WriteModel extends CComponent{
     private $keys;
     private $changedPositions;
 
-
     public function __construct(){
         $this->changedPositions = Settings::getValue('ChangedPosition');
     }
@@ -156,8 +155,9 @@ class WriteModel extends CComponent{
             if(($attributes1->DontChangeDescriptions && in_array($key,$this->excludeFields))||
                ($attributes1->DontChangeImages && in_array($key,$this->imagesFields)))
                 continue;
-            if($key='Position'){
+            if($key=='Position'){
                 $attributes1->DefaultPosition = $value;
+                $flag=true;
                 if($this->changedPositions == 1 )
                     continue;
             }
