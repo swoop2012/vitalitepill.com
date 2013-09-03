@@ -9,6 +9,7 @@ class WriteModel extends CComponent{
 	    'payment_api'=>'DeliveryPayment',
         'settings'=>'Settings',
 	    );
+
     private $imagesFields = array(
         'PictureMain','PictureProduct1','PictureProduct2','PictureProduct3'
     );
@@ -22,16 +23,17 @@ class WriteModel extends CComponent{
     private $keys;
     private $changedPositions;
 
+
     public function __construct(){
         $this->changedPositions = Settings::getValue('ChangedPosition');
     }
 
     public function WriteArray($array,$modelName=NULL)
     {
-	if(!empty($array)){
-
-        if(!empty($modelName)){
-
+	if(!empty($array))
+	{
+        if(!empty($modelName))
+        {
             $delete_ids = NULL;
             $tableName = CActiveRecord::model($modelName)->tableName();
             if(!isset($this->ids[$modelName]))
@@ -42,16 +44,15 @@ class WriteModel extends CComponent{
 
             if(array_key_exists($key, $this->modelArray)){
                 $this->WriteArray($value,$this->modelArray[$key]);
-                continue;
+            continue;
             }
 
             if ($relation = $this->checkArray($value)){
                 if(isset($this->modelArray[$relation]))
                     $this->WriteArray($value[$relation],$this->modelArray[$relation]);
             }
-
-            if(!empty($modelName)){
-
+	    if(!empty($modelName))
+            {
                 $this->keys[$modelName][] =$key;
                 if(!empty($this->ids[$modelName])&&in_array($key,$this->ids[$modelName]))
                 {
@@ -153,9 +154,14 @@ class WriteModel extends CComponent{
         foreach($attributes2 as $key=>$value)
         {
             if(($attributes1->DontChangeDescriptions && in_array($key,$this->excludeFields))||
-               ($attributes1->DontChangeImages && in_array($key,$this->imagesFields)) ||
-               ($this->changedPositions == 1 && $key='Position'))
+               ($attributes1->DontChangeImages && in_array($key,$this->imagesFields)))
                 continue;
+            if($key='Position'){
+                $attributes1->DefaultPosition = $value;
+                if($this->changedPositions == 1 )
+                    continue;
+            }
+
             if($attributes1->{$key}!==$value)
             {
                 if(in_array($key,$this->imagesFields))
