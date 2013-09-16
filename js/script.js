@@ -276,6 +276,8 @@ window.scrollTo(0,0)
                 var count,price,res;
                 count = parseInt(this.countHolder.text());
                 price = parseInt(this.productPriceHolder.val());
+                if(this.product.hasClass('discount'))
+                    price *= -1;
                 if(!isNaN(count)){
                     res = count * price;
                     self.totalPrice +=  res;
