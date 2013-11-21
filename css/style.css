@@ -295,10 +295,10 @@ p.top-title { font-family: "ProximaNova-Bold"; padding: 0px 0px 15px 0px; font-s
 /* Order
 -----------------------------*/
 .delivery-payment { margin: 0px 0px 10px 0px;}
-.delivery-payment ul { height: 92px; padding: 15px 0px;}
-.delivery-payment ul li { width: 198px; height: 66px; border-bottom: 2px solid #091019; float: left; margin: 0px 19px 0px 0px; color: #ffffff; padding: 12px;}
+.delivery-payment ul { min-height: 92px; padding: 15px 0px;}
+.delivery-payment ul li { width: 198px; height: 66px; border-bottom: 2px solid #091019; float: left; margin: 0px 19px 10px 0px; color: #ffffff; padding: 12px;}
 .delivery-payment ul li.fl { margin: 0px;}
-.delivery-payment ul li:hover, .delivery-payment ul li.active { border-bottom: none; height: 68px; cursor: pointer;}
+.delivery-payment ul li:hover, .delivery-payment ul li.active {border-bottom:2px solid #FF0000; cursor: pointer;}
 .delivery-payment ul li p { font-size: 14px; text-transform: uppercase; padding: 0px 0px 10px 0px;} 
 .delivery-payment ul li input { display: none;}
 
@@ -372,3 +372,17 @@ p.top-title { font-family: "ProximaNova-Bold"; padding: 0px 0px 15px 0px; font-s
 /* Footer
 -----------------------------*/
 #footer { height: 22px; background: #343434; border-bottom: 1px solid #444444; border-top: 1px solid #444444; line-height: 22px; color: #c5c5c5; text-align: center; font-size: 11px;}
+.clearfix {
+    *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both;
+}
