@@ -82,6 +82,10 @@ class WriteModel extends CComponent{
             }
 	    }
 	}
+    elseif(!empty($modelName) && empty($array)){
+        CActiveRecord::model($modelName)->deleteAll();
+    }
+
 
 
 
@@ -131,8 +135,8 @@ class WriteModel extends CComponent{
 	{
 	    $keys = array_keys($value);
 	    for($i=0;$i<count($keys);$i++)
-	    if ( $keys[$i] !=='attributes' )
-	    return $keys[$i];
+            if ( $keys[$i] !=='attributes' && !empty($value[$keys[$i]]))
+	            return $keys[$i];
 	}
 	return false;
     }
